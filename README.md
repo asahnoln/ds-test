@@ -38,7 +38,7 @@ The app developed with happy path only. Possible errors are not handled. Usually
 
 As conditions for filtering maintainers are not specified and might change in the future, trais approach is provided to quickly substitute one filtering condition with another.
 
-Current contributions filter DOES NOT GUARANTEE that user is a core maintainer. Further analysis is needed.
+Current contributions filter DOES NOT GUARANTEE that user is a core maintainer, or a core maintainer is present. Further analysis is needed.
 
 Example at [MaintainerFilterByContributions](./app/Services/Traits/MaintainerFilterByContributions.php)
 
