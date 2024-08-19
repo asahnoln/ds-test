@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
-abstract class BaseFollowerService
+use App\Contracts\FollowerServiceInterface;
+
+abstract class BaseFollowerService implements FollowerServiceInterface
 {
     /**
      * TODO: Implement filter function

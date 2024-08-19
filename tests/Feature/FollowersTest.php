@@ -1,5 +1,6 @@
 <?php
 
+use App\Contracts\FollowerServiceInterface;
 use App\Contracts\GitHubClientInterface;
 use App\Services\FollowerService;
 

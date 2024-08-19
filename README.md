@@ -4,7 +4,7 @@
 
 As conditions for filtering maintainers are not specified and might change in the future, trais approach is provided to quickly substitute one filtering condition with another.
 
-Example at [./app/Services/Traits/MaintainerFilterByName.php]
+Example at [MaintainerFilterByName](./app/Services/Traits/MaintainerFilterByName.php)
 
 ```php
 trait MaintainerFilterByName
@@ -16,7 +16,7 @@ trait MaintainerFilterByName
 }
 ```
 
-then use it in [./app/Services/FollowerService.php]
+then use it in [FollowerService](./app/Services/FollowerService.php)
 
 ```php
 class FollowerService extends BaseFollowerService
@@ -29,4 +29,5 @@ class FollowerService extends BaseFollowerService
 - GH Client
   - Auth data (token)
 
-- [ ] getFollowersCount('repoName') -> int
+- [x] getFollowersCount('repoName') -> int
+- [ ] Console command taking repo name
