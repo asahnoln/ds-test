@@ -3,11 +3,11 @@
 namespace App\Services;
 
 use App\Contracts\GitHubClientInterface;
-use App\Services\Traits\MaintainerFilterByName;
+use App\Services\Traits\MaintainerFilterByContributions;
 
 class FollowerService extends BaseFollowerService
 {
-    use MaintainerFilterByName;
+    use MaintainerFilterByContributions;
 
     public function __construct(private GitHubClientInterface $client)
     {

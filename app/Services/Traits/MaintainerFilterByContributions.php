@@ -2,10 +2,10 @@
 
 namespace App\Services\Traits;
 
-trait MaintainerFilterByName
+trait MaintainerFilterByContributions
 {
     protected function maintainerFilter(array $item): bool
     {
-        return $item['login'] != 'asahnoln';
+        return $item['contributions'] >= 10;
     }
 }

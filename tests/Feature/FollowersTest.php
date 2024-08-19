@@ -21,8 +21,9 @@ class GitHubClientStub implements GitHubClientInterface
     {
         $res = match ($user) {
             'testUser' => [
-                ['login' => 'userIvan'],
-                ['login' => 'greatestCoder'],
+                ['login' => 'userIvan', 'contributions' => 20],
+                ['login' => 'greatestCoder', 'contributions' => 50],
+                ['login' => 'filterOut', 'contributions' => 1]
             ],
             default => [],
         };

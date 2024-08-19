@@ -1,10 +1,10 @@
 <?php
 
-use App\Services\Traits\MaintainerFilterByName;
+use App\Services\Traits\MaintainerFilterByContributions;
 
-it('filters out asahnoln', function () {
+it('filters out small contributions', function () {
     $c = new class () {
-        use MaintainerFilterByName;
+        use MaintainerFilterByContributions;
 
         public function test(array $item): bool
         {
@@ -12,7 +12,9 @@ it('filters out asahnoln', function () {
         }
     };
 
-    $res = $c->test(['login' => 'asahnoln']);
+    $res = $c->test([
+        'contributions' => 9
+    ]);
 
     expect($res)->toBeFalse();
 });

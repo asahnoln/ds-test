@@ -1,6 +1,6 @@
 # Followers aggregator
 
-![tests](https://github.com/asahnoln/ds-test/workflows/tests/badge.svg)
+![tests](https://github.com/asahnoln/ds-test/workflows/Tests/badge.svg)
 
 ## Configure
 
@@ -38,14 +38,16 @@ The app developed with happy path only. Possible errors are not handled. Usually
 
 As conditions for filtering maintainers are not specified and might change in the future, trais approach is provided to quickly substitute one filtering condition with another.
 
-Example at [MaintainerFilterByName](./app/Services/Traits/MaintainerFilterByName.php)
+Current contributions filter DOES NOT GUARANTEE that user is a core maintainer. Further analysis is needed.
+
+Example at [MaintainerFilterByContributions](./app/Services/Traits/MaintainerFilterByContributions.php)
 
 ```php
-trait MaintainerFilterByName
+trait MaintainerFilterByContributions
 {
     protected function maintainerFilter(array $item): bool
     {
-        return true;
+        return $item['contributions'] > 1;
     }
 }
 ```
@@ -55,5 +57,5 @@ then use it in [FollowerService](./app/Services/FollowerService.php)
 ```php
 class FollowerService extends BaseFollowerService
 {
-    use MaintainerFilterByName;
+    use MaintainerFilterByContributions;
 ```
