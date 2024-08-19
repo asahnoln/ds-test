@@ -1,5 +1,11 @@
 # Followers aggregator
 
+## Configure
+
+### ENV
+
+Set `GH_TOKEN` in `.env` to your personal access token from [GitHub](https://github.com/settings/personal-access-tokens/new)
+
 ## Maintainer filtering
 
 As conditions for filtering maintainers are not specified and might change in the future, trais approach is provided to quickly substitute one filtering condition with another.
@@ -23,11 +29,3 @@ class FollowerService extends BaseFollowerService
 {
     use MaintainerFilterByName;
 ```
-
-## TODO
-
-- GH Client
-  - Auth data (token)
-
-- [x] getFollowersCount('repoName') -> int
-- [ ] Console command taking repo name

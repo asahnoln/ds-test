@@ -28,9 +28,9 @@ class FollowerService extends BaseFollowerService
 
         $followers = [];
         foreach ($maintainers as $maintainer) {
-            $followers[] = $this->client->followers($maintainer['login']);
+            $followers = array_merge($followers, $this->client->followers($maintainer['login']));
         }
 
-        return collect($followers)->flatten()->unique()->count();
+        return collect($followers)->unique('login')->count();
     }
 }

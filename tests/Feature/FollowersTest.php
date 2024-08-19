@@ -34,17 +34,17 @@ class GitHubClientStub implements GitHubClientInterface
     {
         return match ($user) {
             'userIvan' => [
-                ['login' => 1],
-                ['login' => 2],
-                ['login' => 3],
-                ['login' => 4]
+                ['login' => 1, 'extra' => 'val'],
+                ['login' => 2, 'extra' => 'val2'],
+                ['login' => 3, 'extra' => 'val3'],
+                ['login' => 4, 'extra' => 'val4']
             ],
             'greatestCoder' => [
-                ['login' => 1],
-                ['login' => 2],
-                ['login' => 6],
-                ['login' => 7],
-                ['login' => 8]
+                ['login' => 1, 'just' => 'forFun'],
+                ['login' => 2, 'just' => 'forFun2'],
+                ['login' => 6, 'just' => 'forFun3'],
+                ['login' => 7, 'just' => 'forFun4'],
+                ['login' => 8, 'just' => 'forFun5']
             ],
             default => [],
         };

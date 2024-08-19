@@ -6,6 +6,6 @@ trait MaintainerFilterByName
 {
     protected function maintainerFilter(array $item): bool
     {
-        return true;
+        return $item['login'] != 'asahnoln';
     }
 }
