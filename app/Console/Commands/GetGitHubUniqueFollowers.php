@@ -26,7 +26,8 @@ class GetGitHubUniqueFollowers extends Command
      */
     public function handle(FollowerServiceInterface $service)
     {
-        $count = $service->uniqueFollowersCount($this->argument('fullRepoName'));
-        $this->line('testUser/testReoi core maintainers unique followers count: ' . $count);
+        $repoName = $this->argument('fullRepoName');
+        $count = $service->uniqueFollowersCount($repoName);
+        $this->line("{$repoName} core maintainers unique followers count: {$count}");
     }
 }

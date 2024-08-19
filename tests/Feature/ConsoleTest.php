@@ -9,7 +9,7 @@ it('calls for unique followers command', function () {
     app()->bind(FollowerServiceInterface::class, FollowerServiceStub::class);
 
     artisan('gh:followers:unique testUser/testRepo')
-        ->expectsOutput('testUser/testReoi core maintainers unique followers count: 3')
+        ->expectsOutput('testUser/testRepo core maintainers unique followers count: 3')
         ->assertSuccessful();
 });
 
