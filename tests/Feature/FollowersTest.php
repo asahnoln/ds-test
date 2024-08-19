@@ -1,29 +1,50 @@
 <?php
 
-use App\Contracts\GithubClientInterface;
+use App\Contracts\GitHubClientInterface;
 use App\Services\FollowerService;
 
 it('gets unique followers', function () {
-    $c = new GithubClientStub();
+    $c = new GitHubClientStub();
     $s = new FollowerService($c);
 
-    $count = $s->uniqueFollowersCount('testRepo');
+    $count = $s->uniqueFollowersCount('testUser/testRepo');
 
     expect($count)->toBe(7);
 });
 
-class GithubClientStub implements GithubClientInterface
+todo('pass wrong repo path');
+
+class GitHubClientStub implements GitHubClientInterface
 {
-    public function maintainers(string $repoName): array
+    public function maintainers(string $user, string $repo, callable $predicate): array
     {
-        return ['userIvan', 'greatestCoder'];
+        $res = match ($user) {
+            'testUser' => [
+                ['login' => 'userIvan'],
+                ['login' => 'greatestCoder'],
+            ],
+            default => [],
+        };
+
+        return collect($res)->filter($predicate)->toArray();
     }
 
     public function followers(string $user): array
     {
         return match ($user) {
-            'userIvan' => [1, 2, 3, 4],
-            'greatestCoder' => [1, 2, 6, 7, 8],
+            'userIvan' => [
+                ['login' => 1],
+                ['login' => 2],
+                ['login' => 3],
+                ['login' => 4]
+            ],
+            'greatestCoder' => [
+                ['login' => 1],
+                ['login' => 2],
+                ['login' => 6],
+                ['login' => 7],
+                ['login' => 8]
+            ],
             default => [],
         };
     }

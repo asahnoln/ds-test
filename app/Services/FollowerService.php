@@ -2,23 +2,35 @@
 
 namespace App\Services;
 
-use App\Contracts\GithubClientInterface;
+use App\Contracts\GitHubClientInterface;
+use App\Services\Traits\MaintainerFilterByName;
 
-class FollowerService
+class FollowerService extends BaseFollowerService
 {
-    public function __construct(private GithubClientInterface $client)
+    use MaintainerFilterByName;
+
+    public function __construct(private GitHubClientInterface $client)
     {
 
     }
 
-    public function uniqueFollowersCount(string $repoName): int
+    /**
+     * Get unique followers count from core maintainers of a given repo.
+     *
+     * @param string $fullRepoName Full repo name
+     *
+     * @return int unique followers count
+     */
+    public function uniqueFollowersCount(string $fullRepoName): int
     {
-        $maintainers = $this->client->maintainers($repoName);
+        list($user, $repo) = explode('/', $fullRepoName);
+        $maintainers = $this->client->maintainers($user, $repo, fn (array $item) => $this->maintainerFilter($item));
+
         $followers = [];
         foreach ($maintainers as $maintainer) {
-            $followers = array_merge($followers, $this->client->followers($maintainer));
+            $followers[] = $this->client->followers($maintainer['login']);
         }
 
-        return collect($followers)->unique()->count();
+        return collect($followers)->flatten()->unique()->count();
     }
 }
