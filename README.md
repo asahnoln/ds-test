@@ -1,5 +1,7 @@
 # Followers aggregator
 
+![tests](https://github.com/asahnoln/ds-test/workflows/tests/badge.svg)
+
 ## Configure
 
 ### ENV
