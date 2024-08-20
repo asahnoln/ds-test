@@ -21,7 +21,7 @@ class FollowerService implements FollowerServiceInterface
      */
     public function uniqueFollowersCount(string $fullRepoName): int
     {
-        list($user, $repo) = explode('/', $fullRepoName);
+        list($user, $repo) = $this->checkRepoFormat($fullRepoName);
 
         $maintainers = $this->client->maintainers(
             $user,
@@ -43,5 +43,17 @@ class FollowerService implements FollowerServiceInterface
     protected function maintainerFilter(array $item): bool
     {
         return $item['contributions'] >= config('app.gh.min_contributions');
+    }
+
+    private function checkRepoFormat(string $fullRepoName): array
+    {
+        $result = explode('/', $fullRepoName);
+        if (count($result) != 2) {
+            throw new \UnexpectedValueException(
+                "'{$fullRepoName}' is not a valid repo path. Try 'owner/repo' format."
+            );
+        }
+
+        return $result;
     }
 }

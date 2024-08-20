@@ -30,19 +30,7 @@ which should response with something like this:
 php artisan test
 ```
 
-## Things to consider
-
-### Unhappy path
-
-The app developed with happy path fully and unhappy path partially.
-Possible errors are not handled.
-Usually they just lead to exception being shown without affecting proper app behavior.
-
-What is missing in error handling:
-
-- [ ] Wrong path to repo
-
-### Maintainer filtering
+## Maintainer filtering
 
 Current contributions filter DOES NOT GUARANTEE that user is a core maintainer,
 or a core maintainer is present. Further analysis is needed.

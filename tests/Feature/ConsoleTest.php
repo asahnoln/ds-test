@@ -25,8 +25,6 @@ it('calls for unique followers command', function () {
 it('fails when token is not set', function () {
     config(['github.connections.main.token' => null]);
 
-    app()->bind(GitHubClientInterface::class, GitHubClientStub::class);
-
     artisan('gh:followers:unique testUser/testRepo')
         ->expectsOutputToContain('GitHub token is not set')
         ->assertFailed();
