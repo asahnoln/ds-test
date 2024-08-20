@@ -18,12 +18,12 @@ it('pass wrong repo path', function () {
     $c = new GitHubClientStub();
     $s = new FollowerService($c);
 
-    $count = $s->uniqueFollowersCount('superwrong');
+    $s->uniqueFollowersCount('superwrong');
 })->throws("'superwrong' is not a valid repo path. Try 'owner/repo' format.");
 
 it('pass long repo path', function () {
     $c = new GitHubClientStub();
     $s = new FollowerService($c);
 
-    $count = $s->uniqueFollowersCount('super/long/something');
+    $s->uniqueFollowersCount('super/long/something');
 })->throws("'super/long/something' is not a valid repo path. Try 'owner/repo' format.");
