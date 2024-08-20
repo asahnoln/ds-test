@@ -22,11 +22,19 @@ class FollowerService implements FollowerServiceInterface
     public function uniqueFollowersCount(string $fullRepoName): int
     {
         list($user, $repo) = explode('/', $fullRepoName);
-        $maintainers = $this->client->maintainers($user, $repo, fn (array $item) => $this->maintainerFilter($item));
+
+        $maintainers = $this->client->maintainers(
+            $user,
+            $repo,
+            fn (array $item) => $this->maintainerFilter($item)
+        );
 
         $followers = [];
         foreach ($maintainers as $maintainer) {
-            $followers = array_merge($followers, $this->client->followers($maintainer['login']));
+            $followers = array_merge(
+                $followers,
+                $this->client->followers($maintainer['login'])
+            );
         }
 
         return collect($followers)->unique('login')->count();
