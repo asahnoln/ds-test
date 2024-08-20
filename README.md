@@ -40,3 +40,12 @@ and might change in the future,
 consider changing test user data in [GitHubClientStub](./tests/Stubs/GitHubClientStub.php)
 for [FollowersTest](./tests/Feature/FollowersTest.php)
 and then fixing `maintainerFilter` in [FollowerService](./app/Services/FollowerService.php).
+
+## Files to investigate
+
+Considering the task, you might be interested in specific files:
+
+- Everything in tests: [Feature](./tests/Feature/) and [Unit](./tests/Unit/)  
+- [Console command](./app/Console/Commands/GetGitHubUniqueFollowers.php)
+- [FollowerService](./app/Services/FollowerService.php)
+- [GitHubClient](./app/Clients/GitHubClient.php)
