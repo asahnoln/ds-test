@@ -5,6 +5,7 @@ use App\Contracts\FollowerServiceInterface;
 
 use App\Contracts\GitHubClientInterface;
 use Tests\Stubs\FollowerServiceFailingStub;
+use Tests\Stubs\FollowerServiceStub;
 use Tests\Stubs\GitHubClientStub;
 
 use function Pest\Laravel\artisan;
@@ -42,11 +43,3 @@ it('returns all errors', function (\Throwable $throwable) {
     new \Exception('This is an exception'),
     new \Error('This is an error'),
 ]);
-
-class FollowerServiceStub implements FollowerServiceInterface
-{
-    public function uniqueFollowersCount(string $fullRepoName): int
-    {
-        return 3;
-    }
-}
