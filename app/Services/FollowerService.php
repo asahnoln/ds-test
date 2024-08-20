@@ -2,13 +2,11 @@
 
 namespace App\Services;
 
+use App\Contracts\FollowerServiceInterface;
 use App\Contracts\GitHubClientInterface;
-use App\Services\Traits\MaintainerFilterByContributions;
 
-class FollowerService extends BaseFollowerService
+class FollowerService implements FollowerServiceInterface
 {
-    use MaintainerFilterByContributions;
-
     public function __construct(private GitHubClientInterface $client)
     {
 
@@ -32,5 +30,10 @@ class FollowerService extends BaseFollowerService
         }
 
         return collect($followers)->unique('login')->count();
+    }
+
+    protected function maintainerFilter(array $item): bool
+    {
+        return $item['contributions'] >= config('app.gh.min_contributions');
     }
 }

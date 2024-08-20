@@ -123,4 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'gh' => [
+        'min_contributions' => env('GH_MIN_CONTRIBUTIONS', 10),
+    ],
+
 ];

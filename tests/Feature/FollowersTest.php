@@ -1,10 +1,11 @@
 <?php
 
-use App\Contracts\FollowerServiceInterface;
 use App\Contracts\GitHubClientInterface;
 use App\Services\FollowerService;
 
 it('gets unique followers', function () {
+    config(['app.gh.min_contributions' => 20]);
+
     $c = new GitHubClientStub();
     $s = new FollowerService($c);
 
@@ -46,6 +47,9 @@ class GitHubClientStub implements GitHubClientInterface
                 ['login' => 6, 'just' => 'forFun3'],
                 ['login' => 7, 'just' => 'forFun4'],
                 ['login' => 8, 'just' => 'forFun5']
+            ],
+            'filterOut' => [
+                ['login' => 9, 'extra' => 'new']
             ],
             default => [],
         };
