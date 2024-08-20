@@ -26,8 +26,18 @@ class GetGitHubUniqueFollowers extends Command
      */
     public function handle(FollowerServiceInterface $service)
     {
+        if (!config('github.connections.main.token')) {
+            $this->fail('GitHub token is not set! Set GH_TOKEN in .env to your personal access token');
+        }
+
         $repoName = $this->argument('fullRepoName');
-        $count = $service->uniqueFollowersCount($repoName);
+
+        try {
+            $count = $service->uniqueFollowersCount($repoName);
+        } catch (\Throwable $e) {
+            $this->fail($e->getMessage());
+        }
+
         $this->line("{$repoName} core maintainers unique followers count: {$count}");
     }
 }

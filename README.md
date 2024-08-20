@@ -35,7 +35,6 @@ What is missing in error handling
 
 - [ ] Wrong path to repo
 - [ ] Inability to connect to github
-- [ ] Wrong token
 
 ### Maintainer filtering
 
